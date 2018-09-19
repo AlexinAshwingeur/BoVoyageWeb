@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Application\css\style.css" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Web.config" />
@@ -102,7 +103,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\css\" />
     <Folder Include="Application\html\" />
     <Folder Include="Application\js\" />
     <Folder Include="App_Data\" />
