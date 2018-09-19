@@ -101,6 +101,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Application\" />
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
