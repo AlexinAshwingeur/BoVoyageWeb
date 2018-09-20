@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BoVoyageWeb.Models
 {
-    [Table("DossiersReservations")]
+    [Table("DossierReservations")]
     public class DossierReservation
     {
         public int Id { get; set; }
