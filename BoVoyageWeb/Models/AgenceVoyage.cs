@@ -8,7 +8,7 @@ using System.Web;
 
 namespace BoVoyageWeb.Models
 {
-    [Table("AgencesVoyages")]
+    [Table("AgenceVoyages")]
     public class AgenceVoyage
     {
         public int Id { get; set; }
