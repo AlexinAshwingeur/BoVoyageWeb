@@ -13,21 +13,60 @@
 <body>
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="/"><i class="fas fa-check-double"></i> BoVoyage</a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/application/html/Voyage.html">Gestion Voyage <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/application/html/client.html">Gestion Client</a>
-            </li>
-        </ul>
-    </div>
+        <a class="navbar-brand" href="/"><i class="fas fa-check-double"></i> BoVoyage</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/application/html/Voyage.html">Gestion Voyage <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/application/html/client.html">Gestion Client</a>
+                </li>
+            </ul>
+        </div>
     </nav>
+    <div class="container">
+        <h1>
+            Gestion des Voyages
+        </h1>
+        <div style="margin-bottom:25px;">
+            <a href="#" class="btn btn-primary btn-sm">Créer un Voyage</a>
+            <a href="#" class="btn btn-info btn-sm">Liste des Agences</a>
+            <a href="#" class="btn btn-primary btn-sm">Liste des Destinations</a>
+        </div>
+        <h2>
+            Liste des Voyages
+        </h2>
+        <div id="listeVoyages">
 
+        </div>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <script>
+        function getVoyages() {
+            var divListeVoyages = $('#listeVoyages');
+            //setLoader(divListeVoyages);
 
+            $.Ajax({
+                url: 'api/Voyages',
+                success: function (voyages) {
+                    divListeVoyages.empty();
+                    if (voyages.length > 0) {
+                        for (voyage of voyages) {
+                            var divVoyage = $('<div class="Voyages alert"></div>');
+                            divVoyage.attr("data-id", voyage.id);
+                        }
+                    }
+                }
+
+            })
+        }
+    </script>
 
 </body>
 </html>
