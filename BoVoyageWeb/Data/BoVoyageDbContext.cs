@@ -9,7 +9,7 @@ namespace BoVoyageWeb.Data
 {
     public class BoVoyageDbContext : DbContext
     {
-        public BoVoyageDbContext() : base("BoVoyageWebConnectionString")
+        public BoVoyageDbContext() : base("BoVoyageConnectionString")
         {
         }
 
