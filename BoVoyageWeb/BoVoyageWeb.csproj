@@ -114,6 +114,10 @@
     <Compile Include="Migrations\201809201113195_Init.Designer.cs">
       <DependentUpon>201809201113195_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809201324237_RequiredPaysDestination.cs" />
+    <Compile Include="Migrations\201809201324237_RequiredPaysDestination.Designer.cs">
+      <DependentUpon>201809201324237_RequiredPaysDestination.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AgenceVoyage.cs" />
     <Compile Include="Models\Assurance.cs" />
@@ -140,6 +144,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809201113195_Init.resx">
       <DependentUpon>201809201113195_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201324237_RequiredPaysDestination.resx">
+      <DependentUpon>201809201324237_RequiredPaysDestination.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
