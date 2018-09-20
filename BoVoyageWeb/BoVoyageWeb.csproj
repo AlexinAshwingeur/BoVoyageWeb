@@ -88,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Application\css\style.css" />
+    <Content Include="Application\html\Client.html" />
+    <Content Include="Application\html\DossierReservation.html" />
+    <Content Include="Application\html\Voyage.html" />
     <Content Include="Application\js\JavaScript.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
@@ -132,7 +135,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\html\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
