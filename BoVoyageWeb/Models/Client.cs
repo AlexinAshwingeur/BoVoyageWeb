@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BoVoyageWeb.Models
 {
-    public class Client
+    public class Client : Personne
     {
 
         public string Email { get; set; }
