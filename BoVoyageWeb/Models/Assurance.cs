@@ -10,7 +10,8 @@ namespace BoVoyageWeb.Models
         
        public int Id { get; set; }
        public decimal Montant { get; set; }
-       //public TypeAssurance Type { get; set; }
+       public string Type { get; set; }
+       public int Code { get; set; }
         
     }
 }
