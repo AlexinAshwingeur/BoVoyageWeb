@@ -29,8 +29,8 @@ namespace BoVoyageWeb.Migrations
                         IdDestination = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AgenceVoyages", t => t.IdAgenceVoyage, cascadeDelete: true)
-                .ForeignKey("dbo.Destinations", t => t.IdDestination, cascadeDelete: true)
+                .ForeignKey("dbo.AgenceVoyages", t => t.IdAgenceVoyage, cascadeDelete: false)
+                .ForeignKey("dbo.Destinations", t => t.IdDestination, cascadeDelete: false)
                 .Index(t => t.IdAgenceVoyage)
                 .Index(t => t.IdDestination);
             
@@ -57,8 +57,8 @@ namespace BoVoyageWeb.Migrations
                         IdClient = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Clients", t => t.IdClient, cascadeDelete: true)
-                .ForeignKey("dbo.Voyages", t => t.IdVoyage, cascadeDelete: true)
+                .ForeignKey("dbo.Clients", t => t.IdClient, cascadeDelete: false)
+                .ForeignKey("dbo.Voyages", t => t.IdVoyage, cascadeDelete: false)
                 .Index(t => t.IdVoyage)
                 .Index(t => t.IdClient);
             
