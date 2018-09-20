@@ -7,6 +7,7 @@ using System.Web;
 
 namespace BoVoyageWeb.Models
 {
+    [Table("Voyages")]
     public class Voyage
     {
         public int Id { get; set; }
