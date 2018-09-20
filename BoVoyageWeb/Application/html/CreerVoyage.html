@@ -63,7 +63,7 @@
                 </span>
                 <div class="collapse" id="collapseAgence">
                     <div class="card card-body">
-                        <input type="text" id="Agence" />
+                        <input type="text" id="NomAgence" />
                         <button id="SaveButton" class="btn btn-primary" onclick="AjouterAgence()">Ajouter</button>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
 
-    <!--<script>
+    <script>
         function Valider() {
             let estValide = true;
             var form = $('form');
@@ -123,50 +123,69 @@
             };
             $.ajax({
                 type: 'POST',
-                url: '/api/taches',
-                data: tache,
+                url: '/api/voyages',
+                data: voyage,
                 success: function () {
-                    window.location.href = '/index.html';
+                    window.location.href = '/Application/html/Voyages.html';
+                    alert('Enregistrement du voyage effectué !')
                 },
                 error: function () {
-                    alert('Aïe aïe aïe Caramba !');
+                    alert('Enregistrement Voyage non effectué');
                 }
             });
             return false;
         }
-        function LoadCategories() {
+        function LoadAgenceVoyages() {
             $.ajax({
-                url: '/api/categories',
-                success: function (categories) {
-                    var select = $("#Categorie");
+                url: '/api/AgenceVoyages',
+                success: function (agenceVoyages) {
+                    var select = $("#AgenceVoyage");
                     select.empty();
                     select.append($('<option></option>')); //élément vide
-                    for (categorie of categories) {
+                    for (agenceVoyage of agenceVoyages) {
                         var option = $('<option></option>');
-                        option.val(categorie.ID);
-                        option.text(categorie.Nom);
+                        option.val(agenceVoyage.Id);
+                        option.text(agenceVoyage.Nom);
                         select.append(option);
                     }
                 }
             })
         }
-        function Ajouter() {
+
+        function LoadDestinations() {
+            $.ajax({
+                url: 'api/Destinations',
+                success: function (destinations) {
+                    let selectedDestination = $("#Destinations");
+                    select.empty();
+                    select.append($('<option></option>')); //élément vide
+                    for (destination of destinations) {
+                        var option = $('<option></option>');
+                        option.val(destination.Id);
+                        option.text(destination.Pays);
+                        selectedDestination.append(option);
+                    }
+                }
+            })
+        }
+
+        function AjouterAgence() {
             $.ajax({
                 type: 'POST',
-                url: '/api/categories',
+                url: '/api/agences',
                 data: {
-                    Nom: $('#NomCategorie').val()
+                    Nom: $('#NomAgence').val()
                 },
                 success: function () {
-                    LoadCategories()
+                    LoadAgenceVoyages()
                     $('#Nom').val('');
-                    $('#collapseCategorie').addClass('collapse');
+                    $('#collapseAgence').addClass('collapse');
                 }
             });
         }
 
         $(document).ready(function () {
-            LoadCategories();
+            LoadAgenceVoyages();
             $('#Nom').focus();
         }); 
     </script>-->
