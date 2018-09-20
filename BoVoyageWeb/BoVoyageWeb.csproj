@@ -89,8 +89,9 @@
   <ItemGroup>
     <Content Include="Application\css\style.css" />
     <Content Include="Application\html\Client.html" />
+    <Content Include="Application\html\CreerVoyage.html" />
     <Content Include="Application\html\DossierReservation.html" />
-    <Content Include="Application\html\Voyage.html" />
+    <Content Include="Application\html\Voyages.html" />
     <Content Include="Application\js\JavaScript.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
