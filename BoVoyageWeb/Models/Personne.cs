@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace BoVoyageWeb.Models
 {
 
-    public class Personne
+    public abstract class Personne
     {
         public int Id { get; set; }
 
@@ -24,6 +25,9 @@ namespace BoVoyageWeb.Models
         public string Telephone { get; set; }
 
         public DateTime DateNaissance { get; set; }
+
+        [NotMapped]
+        public int Age { get; set; }
     }
 }
  
