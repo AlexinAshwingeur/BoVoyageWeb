@@ -20,7 +20,7 @@ namespace BoVoyageWeb.Controllers
         // GET: api/Destinations
         public IQueryable<Destination> GetDestinations()
         {
-            return db.Destinations;
+            return db.Destinations.OrderBy(x => x.Pays);
         }
 
         // GET: api/Destinations/5
