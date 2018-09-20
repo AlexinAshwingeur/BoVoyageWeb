@@ -3,8 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
           crossorigin="anonymous">
     <link rel="stylesheet" href="/Application/css/style.css" />
@@ -23,15 +27,149 @@
             </ul>
         </div>
     </nav>
+    <div class="container">
+        <h3>
+           Création d'un voyage
+        </h3>
+        <form novalidate>
+            <div class="form-group">
+                <label for="DateAller">Date Aller</label>
+                <input type="date" class="form-control" id="DateAller" required />
+                <div class="invalid-feedback">Champ requis</div>
+            </div>
 
+            <div class="form-group">
+                <label for="DateRetour">Date Retour</label>
+                <input type="date" class="form-control" id="DateRetour" required />
+            </div>
+
+            <div class="form-group">
+                <label for="PlacesDispo">Places Disponibles</label>
+                <input type="number" class="form-control" id="PlacesDispo" />
+            </div>
+
+            <div class="form-group">
+                <label for="PrixPersonne">Prix/personne TTC</label>
+                <input type="number" class="form-control" id="PrixPersonne" />
+            </div>
+
+            <div class="form-group">
+                <label for="AgenceVoyage">Agence de Voyage de rattachement</label>
+                <select class="form-control" id="AgenceVoyage"></select>
+                <span>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAgence" aria-expanded="false" aria-controls="collapseAgence">
+                        +
+                    </button>
+                </span>
+                <div class="collapse" id="collapseAgence">
+                    <div class="card card-body">
+                        <input type="text" id="Agence" />
+                        <button id="SaveButton" class="btn btn-primary" onclick="AjouterAgence()">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Destination">Destination</label>
+                <select class="form-control" id="Destination"></select>
+                <!--<span>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDestination" aria-expanded="false" aria-controls="collapseDestination">
+                        +
+                    </button>
+                </span>
+                <div class="collapse" id="collapseDestination">
+                    <div class="card card-body">
+                        <input type="text" id="Destination" />
+                        <button id="SaveButton" class="btn btn-primary" onclick="AjouterDestination()">Ajouter</button>
+                    </div>
+                </div>-->
+            </div>
+
+            <button class="btn btn-primary" onclick="return Enregistrer();">Enregistrer</button>
+
+        </form>
+
+
+    </div>
 
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
+
+    <!--<script>
+        function Valider() {
+            let estValide = true;
+            var form = $('form');
+            if (form[0].checkValidity() === false) {
+                estValide = false;
+            }
+            form.addClass("was-validated");
+            return estValide;
+        }
+        function Enregistrer() {
+            if (!Valider()) {
+                return false;
+            }
+            
+            let voyage = {
+                DateAller: $('#DateAller').val(),
+                DateRetour: $('#DateRetour').val(),
+                PlacesDisponibles: $('#PlacesDispo').val(),
+                PrixParPersonne: $('#PrixPersonne').val(),
+                IdAgenceVoyage: $('#AgenceVoyage').val(),
+                IdDestination: $('#Destination').val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/api/taches',
+                data: tache,
+                success: function () {
+                    window.location.href = '/index.html';
+                },
+                error: function () {
+                    alert('Aïe aïe aïe Caramba !');
+                }
+            });
+            return false;
+        }
+        function LoadCategories() {
+            $.ajax({
+                url: '/api/categories',
+                success: function (categories) {
+                    var select = $("#Categorie");
+                    select.empty();
+                    select.append($('<option></option>')); //élément vide
+                    for (categorie of categories) {
+                        var option = $('<option></option>');
+                        option.val(categorie.ID);
+                        option.text(categorie.Nom);
+                        select.append(option);
+                    }
+                }
+            })
+        }
+        function Ajouter() {
+            $.ajax({
+                type: 'POST',
+                url: '/api/categories',
+                data: {
+                    Nom: $('#NomCategorie').val()
+                },
+                success: function () {
+                    LoadCategories()
+                    $('#Nom').val('');
+                    $('#collapseCategorie').addClass('collapse');
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            LoadCategories();
+            $('#Nom').focus();
+        }); 
+    </script>-->
 
 </body>
 </html>
