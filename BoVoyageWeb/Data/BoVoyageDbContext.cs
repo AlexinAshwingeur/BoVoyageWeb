@@ -20,7 +20,7 @@ namespace BoVoyageWeb.Data
         public DbSet<DossierReservation> DossierReservations { get; set; }
         public DbSet<Participant> Participants { get; set; }
         public DbSet<Personne> Personnes { get; set; }
-        public DbSet<Voyage> voyages { get; set; }
+        public DbSet<Voyage> Voyages { get; set; }
 
     }
 }
