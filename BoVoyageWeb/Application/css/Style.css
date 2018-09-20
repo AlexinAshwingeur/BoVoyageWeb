@@ -12,12 +12,14 @@
     background-color: #95cef659;
 }
 
-.h1 {
-  border : 
+.titre {
+    justify-content: center;
+    text-align: center;
 }
 .flex-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    
 }
 
 .toolbar {
