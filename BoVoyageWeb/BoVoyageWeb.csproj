@@ -95,6 +95,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AgenceVoyagesController.cs" />
+    <Compile Include="Controllers\AssurancesController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\DestinationsController.cs" />
+    <Compile Include="Controllers\DossierReservationsController.cs" />
+    <Compile Include="Controllers\ParticipantsController.cs" />
+    <Compile Include="Controllers\PersonnesController.cs" />
+    <Compile Include="Controllers\VoyagesController.cs" />
     <Compile Include="Data\BoVoyageDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -126,7 +134,6 @@
   <ItemGroup>
     <Folder Include="Application\html\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809200935086_Init.resx">
