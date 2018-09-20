@@ -13,44 +13,44 @@ using BoVoyageWeb.Models;
 
 namespace BoVoyageWeb.Controllers
 {
-    public class DestinationsController : ApiController
+    public class ClientsController : ApiController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 
-        // GET: api/Destinations
-        public IQueryable<Destination> GetDestinations()
+        // GET: api/Clients
+        public IQueryable<Client> GetClients()
         {
-            return db.Destinations.OrderBy(x => x.Pays);
+            return db.Clients.OrderBy(x => x.Nom);
         }
 
-        // GET: api/Destinations/5
-        [ResponseType(typeof(Destination))]
-        public IHttpActionResult GetDestination(int id)
+        // GET: api/Clients/5
+        [ResponseType(typeof(Client))]
+        public IHttpActionResult GetClient(int id)
         {
-            Destination destination = db.Destinations.Find(id);
-            if (destination == null)
+            Client client = db.Clients.Find(id);
+            if (client == null)
             {
                 return NotFound();
             }
 
-            return Ok(destination);
+            return Ok(client);
         }
 
-        // PUT: api/Destinations/5
+        // PUT: api/Clients/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutDestination(int id, Destination destination)
+        public IHttpActionResult PutClient(int id, Client client)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != destination.Id)
+            if (id != client.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(destination).State = EntityState.Modified;
+            db.Entry(client).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace BoVoyageWeb.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DestinationExists(id))
+                if (!ClientExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +71,35 @@ namespace BoVoyageWeb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Destinations
-        [ResponseType(typeof(Destination))]
-        public IHttpActionResult PostDestination(Destination destination)
+        // POST: api/Clients
+        [ResponseType(typeof(Client))]
+        public IHttpActionResult PostClient(Client client)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Destinations.Add(destination);
+            db.Clients.Add(client);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = destination.Id }, destination);
+            return CreatedAtRoute("DefaultApi", new { id = client.Id }, client);
         }
 
-        // DELETE: api/Destinations/5
-        [ResponseType(typeof(Destination))]
-        public IHttpActionResult DeleteDestination(int id)
+        // DELETE: api/Clients/5
+        [ResponseType(typeof(Client))]
+        public IHttpActionResult DeleteClient(int id)
         {
-            Destination destination = db.Destinations.Find(id);
-            if (destination == null)
+            Client client = db.Clients.Find(id);
+            if (client == null)
             {
                 return NotFound();
             }
 
-            db.Destinations.Remove(destination);
+            db.Clients.Remove(client);
             db.SaveChanges();
 
-            return Ok(destination);
+            return Ok(client);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +111,9 @@ namespace BoVoyageWeb.Controllers
             base.Dispose(disposing);
         }
 
-        private bool DestinationExists(int id)
+        private bool ClientExists(int id)
         {
-            return db.Destinations.Count(e => e.Id == id) > 0;
+            return db.Clients.Count(e => e.Id == id) > 0;
         }
     }
 }

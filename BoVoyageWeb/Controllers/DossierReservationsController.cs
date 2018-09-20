@@ -20,7 +20,7 @@ namespace BoVoyageWeb.Controllers
         // GET: api/DossierReservations
         public IQueryable<DossierReservation> GetDossierReservations()
         {
-            return db.DossierReservations;
+            return db.DossierReservations.OrderBy(x => x.Id);
         }
 
         // GET: api/DossierReservations/5

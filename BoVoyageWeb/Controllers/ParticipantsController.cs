@@ -13,44 +13,44 @@ using BoVoyageWeb.Models;
 
 namespace BoVoyageWeb.Controllers
 {
-    public class DestinationsController : ApiController
+    public class ParticipantsController : ApiController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 
-        // GET: api/Destinations
-        public IQueryable<Destination> GetDestinations()
+        // GET: api/Participants
+        public IQueryable<Participant> GetParticipants()
         {
-            return db.Destinations.OrderBy(x => x.Pays);
+            return db.Participants.OrderBy(x => x.Nom);
         }
 
-        // GET: api/Destinations/5
-        [ResponseType(typeof(Destination))]
-        public IHttpActionResult GetDestination(int id)
+        // GET: api/Participants/5
+        [ResponseType(typeof(Participant))]
+        public IHttpActionResult GetParticipant(int id)
         {
-            Destination destination = db.Destinations.Find(id);
-            if (destination == null)
+            Participant participant = db.Participants.Find(id);
+            if (participant == null)
             {
                 return NotFound();
             }
 
-            return Ok(destination);
+            return Ok(participant);
         }
 
-        // PUT: api/Destinations/5
+        // PUT: api/Participants/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutDestination(int id, Destination destination)
+        public IHttpActionResult PutParticipant(int id, Participant participant)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != destination.Id)
+            if (id != participant.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(destination).State = EntityState.Modified;
+            db.Entry(participant).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace BoVoyageWeb.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DestinationExists(id))
+                if (!ParticipantExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +71,35 @@ namespace BoVoyageWeb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Destinations
-        [ResponseType(typeof(Destination))]
-        public IHttpActionResult PostDestination(Destination destination)
+        // POST: api/Participants
+        [ResponseType(typeof(Participant))]
+        public IHttpActionResult PostParticipant(Participant participant)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Destinations.Add(destination);
+            db.Participants.Add(participant);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = destination.Id }, destination);
+            return CreatedAtRoute("DefaultApi", new { id = participant.Id }, participant);
         }
 
-        // DELETE: api/Destinations/5
-        [ResponseType(typeof(Destination))]
-        public IHttpActionResult DeleteDestination(int id)
+        // DELETE: api/Participants/5
+        [ResponseType(typeof(Participant))]
+        public IHttpActionResult DeleteParticipant(int id)
         {
-            Destination destination = db.Destinations.Find(id);
-            if (destination == null)
+            Participant participant = db.Participants.Find(id);
+            if (participant == null)
             {
                 return NotFound();
             }
 
-            db.Destinations.Remove(destination);
+            db.Participants.Remove(participant);
             db.SaveChanges();
 
-            return Ok(destination);
+            return Ok(participant);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +111,9 @@ namespace BoVoyageWeb.Controllers
             base.Dispose(disposing);
         }
 
-        private bool DestinationExists(int id)
+        private bool ParticipantExists(int id)
         {
-            return db.Destinations.Count(e => e.Id == id) > 0;
+            return db.Participants.Count(e => e.Id == id) > 0;
         }
     }
 }
