@@ -14,6 +14,7 @@ namespace BoVoyageWeb.Models
 
         public string Continent { get; set; }
 
+        [Required]
         public string Pays { get; set; }
 
         public string Region { get; set; }
