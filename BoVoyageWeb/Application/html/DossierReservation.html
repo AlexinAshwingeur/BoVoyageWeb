@@ -43,18 +43,15 @@
 
 
             <div class="form-group">
-                <label for="IdClient">Identifiant*</label>
-                <input type="text" class="form-control" id="Id" required />
+                <label for="Client">Client*</label>
+                <select class="form-control" id="Client" required></select>
             </div>
 
-            <div class="form-group">
-                <label for="Prenom">Prenom*</label>
-                <input type="text" class="form-control" id="Prenom" required />
-            </div>
+           
 
             <div class="form-group">
                 <label for="CarteBancaire">Carte bancaire*</label>
-                <input type="carte" class="form-control" id="Carte bancaire" required />
+                <input type="text" class="form-control" id="Carte bancaire" required />
             </div>
 
             <div class="form-group">
@@ -68,10 +65,7 @@
 
             </div>
 
-            <div class="form-group">
-                <label for="Client">Client*</label>
-                <input type="text" class="form-control" id="iDClient" required />
-            </div>
+            
 
 
             <button class="btn btn-primary" onclick="return Enregistrer();">Enregistrer</button>
@@ -95,6 +89,23 @@
                         var option = $('<option></option>');
                         option.val(voyage.Id);
                         option.text(voyage.Nom);
+                        select.append(option);
+                    }
+                }
+            })
+        }
+
+        function LoadClients() {
+            $.ajax({
+                url: '/api/Clients',
+                success: function (client) {
+                    var select = $("#Clients");
+                    select.empty();
+                    select.append($('<option></option>')); //élément vide
+                    for (client of client) {
+                        var option = $('<option></option>');
+                        option.val(client.Id);
+                        option.text(client.Nom);
                         select.append(option);
                     }
                 }
