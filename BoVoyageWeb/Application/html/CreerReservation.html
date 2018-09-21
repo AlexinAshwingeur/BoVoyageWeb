@@ -80,8 +80,6 @@
             crossorigin="anonymous"></script>
     <script src="/Application/js/Javascript.js"></script>
     <script>
-
-
         function Valider() {
             let estValide = true;
             var form = $('form');
@@ -102,9 +100,6 @@
                 IdVoyage: $('#Voyage').val(),
                 
             };
-            
-
-
             $.ajax({
                 type: 'POST',
                 url: '/api/DossierReservations',
@@ -124,14 +119,14 @@
             $.ajax({
                 url: '/api/Voyages',
                 success: function (voyages) {
-                    var select = $("#Voyage");
-                    select.empty();
-                    select.append($('<option></option>')); //élément vide
+                    var selectVoyage = $("#Voyage");
+                    selectVoyage.empty();
+                    selectVoyage.append($('<option></option>')); //élément vide
                     for (voyage of voyages) {
                         var option = $('<option></option>');
                         option.val(voyage.Id);
                         option.text(voyage.DateAller);
-                        select.append(option);
+                        selectVoyage.append(option);
                     }
                 }
             });
