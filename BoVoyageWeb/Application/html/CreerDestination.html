@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="/Application/css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="/Application/js/JavaScript.js"></script>
+
+    <title>Créer une destination</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-check-double"></i> BoVoyage</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/application/html/Clients.html">Gestion Client</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>
+            Créer une destination
+        </h1>
+        <div style="margin-bottom:25px;">
+            <a href="/Application/html/Destinations.html" class="btn btn-primary btn-sm">Liste des Destinations</a>
+            <a href="/Application/html/Voyages.html" class="btn btn-info btn-sm">Liste des Voyages</a>
+            <a href="/Application/html/AgencesVoyages.html" class="btn btn-primary btn-sm">Liste des Agences de Voyage</a>
+        </div>
+        <form novalidate>
+            <div class="form-group">
+                <label for="Continent">Continent</label>
+                <input type="text" class="form-control" id="Continent" />
+            </div>
+
+            <div class="form-group">
+                <label for="Pays">Pays</label>
+                <input type="text" class="form-control" id="Pays" required />
+                <div class="invalid-feedback">
+                    Champ requis
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Region">Région</label>
+                <input type="text" class="form-control" id="Pays" />
+            </div>
+
+
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <textarea class="form-control" id="Description" rows="3"></textarea>
+            </div>
+
+        </form>
+        <div class="actions">
+            <button class="btn btn-primary" onclick="return Enregistrer();">Enregistrer</button>
+            <a href="/" class="btn btn-light">Annuler</a>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script>
+        function Valider() {
+            var form = $('form');
+            let estValide = form[0].checkValidity();
+            form.addClass("was-validated");
+            return estValide;
+        }
+        function Enregistrer() {
+            if (!Valider()) {
+                return false;
+            }
+            let destination = {
+                Continent: $('#Continent').val(),
+                Pays: $('#Pays').val(),
+                Region: $('#Region').val(),
+                Description: $('#Description').val(),
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/api/Destinations',
+                data: destination,
+                success: function () {
+                    window.location.href = '/Application/HTML/Destinations.html';
+                },
+                error: function () {
+                    alert('Il y a un truc qui ne tourne pas rond !!');
+                }
+            });
+            return false;
+        }
+        function LoadDestinations() {
+            $.ajax({
+                url: '/api/Destinations',
+                success: function (destinations) {
+                    var select = $("#Destination");
+                    select.empty();
+                    select.append($('<option></option>')); // élément vide
+                    for (destination of destinations) {
+                        var option = $('<option></option>');
+                        option.val(destination.id);
+                        option.text(destination.Pays);
+                        select.append(option);
+                    }
+                }
+            });
+        }
+        $(document).ready(function () {
+            LoadDestinations();
+            $('#Continent').focus(); 
+        });
+    </script>
+</body>
+</html>

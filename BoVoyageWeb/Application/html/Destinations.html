@@ -2,9 +2,192 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/Application/css/style.css" />
+    <link rel="stylesheet" href="/Application/js/JavaScript.js" />
+
+
+    <title>Liste des Destinations</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-check-double"></i> BoVoyage</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/application/html/Clients.html">Gestion Client</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>
+            Liste des Destinations
+        </h1>
+        <div style="margin-bottom:25px;">
+            <a href="/Application/html/CreerDestination.html" class="btn btn-primary btn-sm">Créer une Destination</a>
+            <a href="/Application/html/Voyages.html" class="btn btn-info btn-sm">Liste des Voyages</a>
+            <a href="/Application/html/AgencesVoyages.html" class="btn btn-primary btn-sm">Liste des Agences de Voyage</a>
+        </div>
+        <div id="listeDestinations">
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="/Application/js/Javascript.js"></script>
+
+    <script>
+        // fonction pour charger la liste des destiantions utilisant le GET du controller Destinations
+        function LoadDestinations() {
+            $.ajax({
+                url: '/api/Destinations',
+                success: function (destinations) {
+
+                    // Avec JQuery
+                    var divlisteDestinations = $('#listeDestinations');
+                    divlisteDestinations.empty();
+                    for (var destination of destinations) {
+                        var divDestination = $('<div class="Liste Destination"></div>');
+                        RemplirDivDestination(divDestination, destination);
+                        divlisteDestinations.append(divDestination);
+                    }
+                }
+            });
+        }
+
+        // fonction pour remplir la div Agence
+        function RemplirDivDestination(divDestination, destination) {
+            divDestination.empty();
+            divDestination.data('id', destination.id);
+            divDestination.append($('<span></span>').text(destination.Pays));
+
+            //Bouton supprimer
+            var buttonDelete = $('<button id="DeleteButton" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>');
+            buttonDelete.on('click', function () {
+                $.bsAlert.confirmTitle = 'Suppression';
+                $.bsAlert.closeDisplay = 'Non';
+                $.bsAlert.sureDisplay = 'Oui';
+                $.bsAlert.confirm("Etes-vous sûr de vouloir supprimer la destination ?", () => {
+                    var idDestination = $(this).closest(".Destination").data('id');
+                    Supprimer(idDestination);
+                });
+            });
+            divDestination.append(buttonDelete);
+
+            ////Bouton modifier agence
+            var buttonModify = $('<button id="ModifyButton" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></button>')
+            buttonModify.on('click', function () {
+                Modifier($(this));
+            });
+            divDestination.append(buttonModify);
+        }
+
+        //Fonction pour modifier le nom d'une agence
+        function Modifier(bouton) {
+            var div = bouton.closest('.Destination');
+            var span = div.find('span');
+            var continent = span.text();
+            div.data('continent', continent); //stockage du nom dans le div en cas d'annulation
+            div.empty();
+            var input = $('<input type="text"/>').val(span.text());
+            div.append(input);
+            input.focus();
+            input.select();
+            input.on('keyup', function (event) {
+                var divDestination= $(this).closest('.Destination');
+                switch (event.which) {
+                    case 13:/*ENTER*/
+                        EnregistrerModification(divDestination);
+                        break;
+                    case 27:/*ESCAPE*/
+                        AnnulerModification(divDestination);
+                        break;
+                }
+            });
+            var discardButton = $('<button class="btn btn-secondary btn-sm">Annuler</button>');
+            discardButton.on('click', function () {
+                let divDestination = $(this).closest('.Destination');
+                AnnulerModification(divDestination);
+            });
+            div.append(discardButton);
+            var SaveButton2 = $('<button class="btn btn-primary btn-sm">Enregister</button>');
+            div.append(SaveButton2);
+            SaveButton2.on('click', function () {
+                EnregistrerModification($(this).closest('.Destination'));
+            });
+        }
+
+        // fonction pour supprimer une agence
+        function Supprimer(idDestination) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/Destinations/' + idDestination,
+                success: function () {
+                    LoadDestinations();
+                },
+                error: function () {
+                    alert('Impossible de supprimer. Peut-être la destination est elle liée à un voyage?');
+                }
+            });
+        }
+
+        //fonction pour ajouter une agence
+        function Ajouter() {
+            $.ajax({
+                type: 'POST',
+                url: '/api/Destinations',
+                data: {
+                    Continent: $('#Continent').val()
+                },
+                success: function () {
+                    LoadDestinations()
+                    $('#Continent').val('');
+                }
+            });
+        }
+
+        //fonction pour annuler une modification sur agence
+        function AnnulerModification(divDestination) {
+            let idDestination= divDestination.data('id');
+            let continent = divDestination.data('continent'); //nom stocké plus haut
+            RemplirDivDestination(divDestination, { id: idDestination, Continent: continent});
+        }
+
+
+        //fonction pour enregistrer la modification
+        function EnregistrerModification(divDestination) {
+            let idDestination= divDestination.data('id');
+            let continent = divDestination.find('input').val();
+            $.ajax({
+                type: 'PUT',
+                url: '/api/Destinations/' + idDestination,
+                data: {
+                    id: idDestination,
+                    Continent: continent
+                },
+                success: function () {
+                    RemplirDivDestination(divDestination, { id: idDestination, Continent: continent });
+                }
+            });
+        }
+        $(document).ready(function () {
+            LoadDestinations();
+        });
+    </script>
 
 </body>
 </html>
