@@ -12,22 +12,27 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
           crossorigin="anonymous">
     <link rel="stylesheet" href="/Application/css/style.css" />
+    <link rel="" href="/Application/js/JavaScript.js" />
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+    <!--Navigation-->
+    <nav class="navbar navbar-light" style="background-color:#138496 ;">
         <a class="navbar-brand" href="/"><i class="fas fa-check-double"></i> BoVoyage</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="/application/html/Clients.html">Gestion Client</a>
                 </li>
             </ul>
         </div>
     </nav>
-
+    
+    <!--Formulaire nouveau client-->
     <div class="container-fluid">
         <h3>Nouveau client</h3>
 
@@ -35,7 +40,7 @@
 
             <fieldset class="form-group">
                 <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">Civilité </legend>
+                    <div class="col-form-label col-sm-2 pt-0">Civilité </div>
                     <div class="col-sm-10">
 
                         <div class="form-check">
@@ -95,27 +100,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
 
-  
+
 
     <script>
 
-        function LoadClients() {
-            var divListeClients = $('#listeClients');
-            setLoader(divListeClients);
-
-            $.ajax({
-                url: '/api/clients',
-                success: function (clients) {
-                    divListeClients.empty();
-
-                    for (var client of clients) {
-                        var divClient = $('<div class="Client"></div>');
-                        RemplirDivClient(divClient, client);
-                        divListeClients.append(divClient);
-                    }
-                }
-            });
-        }
 
         function Valider() {
             let estValide = true;
