@@ -23,15 +23,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/application/html/Clients.html">Gestion Client</a>
+                    <a class="nav-link active" href="/application/html/Clients.html">Gestion Client</a>
                 </li>
             </ul>
         </div>
     </nav>
-    
+
     <!--Formulaire nouveau client-->
     <div class="container-fluid">
         <h3>Nouveau client</h3>
@@ -99,6 +99,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
+    <script src="/Application/js/Javascript.js"></script>
 
 
 
@@ -133,7 +134,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/api/ListeClients',
+                url: '/api/Clients',
                 data: client,
                 success: function () {
                     window.location.href = '/Application/html/ListeClients.html';

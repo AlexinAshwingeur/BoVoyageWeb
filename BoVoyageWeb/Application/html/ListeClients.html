@@ -26,10 +26,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="/application/html/Clients.html">Gestion Client</a>
+                    <a class="nav-link active" href="/application/html/Clients.html">Gestion Client</a>
                 </li>
             </ul>
         </div>
@@ -70,6 +70,7 @@
                 }
             });
         }
+      
 
         function getListeClients() {
             var divListeClients = $('#listeClients');
@@ -123,10 +124,10 @@
             });
         }
 
-        function ModifierListeClients(id, input) {
+        function ModifierClients(id, input) {
             $.ajax({
                 type: 'PUT',
-                url: '/api/ListeClients/' + id + '?statut=' + input.checked,
+                url: '/api/Clients/' + id + '?statut=' + input.checked,
                 success: function () {
                     var divClient = $(input).closest(".Client");
                     if (input.checked) {
@@ -142,7 +143,7 @@
         function SupprimerClient(id, div) {
             $.ajax({
                 type: 'DELETE',
-                url: '/api/ListeClients/' + id,
+                url: '/api/Clients/' + id,
                 success: function () {
                     getListeClients();
                 },
