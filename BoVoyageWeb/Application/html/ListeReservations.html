@@ -35,7 +35,7 @@
     <div class="container-fluid">
 
         <div id="listeReservations">
-
+            dzad
         </div>
 
 
@@ -49,26 +49,28 @@
     <script>
 
 
-        function LoadDossiersReservations() {
+        function LoadDossierReservations() {
             var divListeReservations = $('#listeReservations');
             setLoader(divListeReservations);
-
             $.ajax({
                 url: '/api/DossierReservations',
                 success: function (DossierReservations) {
                     divListeReservations.empty();
 
-                    for (var DossierReservation of DossierReservations) {
-                        var divReservation = $('<div class="Reser"></div>');
-                        RemplirDivClient(divClient, client);
-                        divListeReservations.append(divClient);
+                    for (DossierReservation of DossierReservations) {
+                        var divDossierReservations = $('<div class="DossierReservation"></div>');
+                        divDossierReservations.text(DossierReservation.Id);
+                       
+
+                        
+                        divListeReservations.append(divDossierReservations);
                     }
                 }
             });
         }
 
 
-      
+        $(document).ready(LoadDossierReservations);
 
     </script>
 </body>

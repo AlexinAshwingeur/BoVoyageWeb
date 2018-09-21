@@ -49,14 +49,14 @@
 
             <div class="form-group">
                 <label for="CarteBancaire">Carte bancaire*</label>
-                <input type="text" class="form-control" id="Carte bancaire" required />
+                <input type="text" class="form-control" id="CarteBancaire" required />
             </div>
 
             <div class="form-group">
-                <label for="PrixPersonne">Prix/personne TTC</label>
+                <label for="PrixParPersonne">Prix/personne TTC</label>
                 <div class="input-group-prepend">
                     <span class="input-group-text"> €</span>
-                    <input type="number" class="form-control" id="PrixPersonne" min="0" required />
+                    <input type="number" class="form-control" id="PrixParPersonne" min="0" required />
                     <div class="invalid-feedback">Champ requis</div>
                 </div>
             </div>
@@ -95,15 +95,14 @@
             if (!Valider()) {
                 return false;
             }
-
             let reservation = {
-                Client: $('#Client').val(),
-                CarteBancaire: $('#CarteBancaire').val(),
+                IdClient: $('#Client').val(),
+                NumeroCarteBancaire: $('#CarteBancaire').val(),
                 PrixParPersonne: $('#PrixParPersonne').val(),
-                Voyage: $('#Voyage').val(),
-
+                IdVoyage: $('#Voyage').val(),
+                
             };
-
+            
 
 
             $.ajax({
@@ -111,7 +110,7 @@
                 url: '/api/DossierReservations',
                 data: reservation,
                 success: function () {
-                    window.location.href = '/Application/html/ListeReservation.html';
+                    window.location.href = '/Application/html/ListeReservations.html';
                     alert('Enregistrement de la reservation  effectué !')
                 },
                 error: function () {
@@ -147,7 +146,7 @@
                     select.append($('<option></option>')); // élément vide
                     for (client of clients) {
                         var option = $('<option></option>');
-                        option.val(client.id);
+                        option.val(client.Id);
                         option.text(client.Nom);
                         select.append(option);
                     }
