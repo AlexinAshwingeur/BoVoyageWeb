@@ -1,4 +1,4 @@
-﻿
+﻿/* fichier css pour les styles des pages autre que la page index.html*/
 
 .container-fluid {
     margin-top: 25px;
@@ -11,6 +11,7 @@
 .nav-item.active {
     background-color: #95cef659;
 }
+
 
 .titre {
     justify-content: center;
@@ -63,3 +64,69 @@
 }
 
 /* Loader (fin) */
+
+/*.Agence {
+    border: solid 1px lightgray;
+    padding: 10px;
+}
+
+.Agence input[type=checkbox] {
+    margin-right: 10px;
+}
+
+.Agence button {
+    float: right;
+    display: none;
+    margin-right: 4px;
+}
+
+.Agence:hover button {
+    display: block;
+}*/
+
+.Liste {
+    border: solid 1px lightgray;
+    padding: 10px;
+}
+
+    .Liste input[type=checkbox] {
+        margin-right: 10px;
+    }
+
+    .Liste button {
+        float: right;
+        display: none;
+        margin-right: 4px;
+    }
+
+    .Liste:hover button {
+        display: block;
+    }
+
+/*.navbar-light {
+            color: black;
+            font-weight: bold;
+        }
+
+        .navbar-brand {
+            font-size: x-large;
+        }
+
+        .nav-link {
+            font-size: large;
+        }
+
+        .active {
+            background-color: gray;
+        }*/
+
+.bsAlert {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 320px;
+            margin-left: -100px;
+            margin-top: -100px;
+            display: none;
+            word-break: break-all
+        }
