@@ -3,7 +3,8 @@
 
 <html>
 <head>
-    <title></title>
+
+    <meta charset="utf-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
@@ -14,6 +15,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="/Application/css/style.css" />
     <link rel="stylesheet" href="/Application/js/JavaScript.js" />
+    <title></title>
 
 </head>
 
@@ -55,7 +57,7 @@
 
         function LoadClients() {
             var divListeClients = $('#listeClients');
-            setLoader(divListeCategories);
+            setLoader(divListeClients);
 
             $.ajax({
                 url: '/api/clients',

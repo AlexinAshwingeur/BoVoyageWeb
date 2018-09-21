@@ -81,21 +81,61 @@
     <script src="/Application/js/Javascript.js"></script>
     <script>
 
+
+        function Valider() {
+            let estValide = true;
+            var form = $('form');
+            if (form[0].checkValidity() === false) {
+                estValide = false;
+            }
+            form.addClass("was-validated");
+            return estValide;
+        }
+        function Enregistrer() {
+            if (!Valider()) {
+                return false;
+            }
+
+            let reservation = {
+                Client: $('#Client').val(),
+                CarteBancaire: $('#CarteBancaire').val(),
+                PrixParPersonne: $('#PrixParPersonne').val(),
+                Voyage: $('#Voyage').val(),
+
+            };
+
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/DossierReservations',
+                data: reservation,
+                success: function () {
+                    window.location.href = '/Application/html/ListeReservation.html';
+                    alert('Enregistrement de la reservation  effectué !')
+                },
+                error: function () {
+                    alert('Enregistrement de la reservation non effectué');
+                }
+            });
+            return false;
+        }
+
         function LoadVoyages() {
             $.ajax({
                 url: '/api/Voyages',
                 success: function (voyages) {
-                    var select = $("#Voyages");
+                    var select = $("#Voyage");
                     select.empty();
                     select.append($('<option></option>')); //élément vide
                     for (voyage of voyages) {
                         var option = $('<option></option>');
                         option.val(voyage.Id);
-                        option.text(voyage.Nom);
+                        option.text(voyage.DateAller);
                         select.append(option);
                     }
                 }
-            })
+            });
         }
 
         function LoadClients() {

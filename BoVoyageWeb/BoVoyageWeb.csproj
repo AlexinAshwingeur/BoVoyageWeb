@@ -105,9 +105,9 @@
     <Content Include="Application\html\CreerReservation.html" />
     <Content Include="Application\html\CreerVoyage.html" />
     <Content Include="Application\html\Destinations.html" />
-    <Content Include="Application\html\DossierReservation.html" />
+    <Content Include="Application\html\DossierReservations.html" />
     <Content Include="Application\html\ListeClients.html" />
-    <Content Include="Application\html\Reservation.html" />
+    <Content Include="Application\html\ListeReservations.html" />
     <Content Include="Application\html\Voyages.html" />
     <Content Include="Application\js\JavaScript.js" />
     <Content Include="Global.asax" />
