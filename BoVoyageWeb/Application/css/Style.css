@@ -1,11 +1,14 @@
 ﻿/* fichier css pour les styles des pages autre que la page index.html*/
-
+body {
+    background-color: #e3f2fd;
+}
 .container-fluid {
     margin-top: 25px;
 }
 
 .nav-bar {
     padding: 0 1rem;
+   
 }
 
 .nav-item.active {
