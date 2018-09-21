@@ -85,14 +85,79 @@
                 <input type="text" class="form-control" id="Telephone" required />
             </div>
 
-            <div class="form-group">
-                <label for="NumeroCarteBancaire">Carte Bancaire*</label>
-                <input type="text" class="form-control" id="CarteBancaire" required />
-            </div>
-           
+
             <button class="btn btn-primary" onclick="return Enregistrer();">Enregistrer</button>
 
         </form>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+
+  
+
+    <script>
+
+        function LoadClients() {
+            var divListeClients = $('#listeClients');
+            setLoader(divListeClients);
+
+            $.ajax({
+                url: '/api/clients',
+                success: function (clients) {
+                    divListeClients.empty();
+
+                    for (var client of clients) {
+                        var divClient = $('<div class="Client"></div>');
+                        RemplirDivClient(divClient, client);
+                        divListeClients.append(divClient);
+                    }
+                }
+            });
+        }
+
+        function Valider() {
+            let estValide = true;
+            var form = $('form');
+            if (form[0].checkValidity() === false) {
+                estValide = false;
+            }
+            form.addClass("was-validated");
+            return estValide;
+        }
+        function Enregistrer() {
+            if (!Valider()) {
+                return false;
+            }
+
+            let client = {
+                Civilité: $('#Civilité').val(),
+                Nom: $('#Nom').val(),
+                Prenom: $('#Prenom').val(),
+                DateNaissance: $('#DateNaissance').val(),
+                Email: $('#Email').val(),
+                Telephone: $('#Telephone').val()
+
+            };
+
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/ListeClients',
+                data: client,
+                success: function () {
+                    window.location.href = '/Application/html/ListeClients.html';
+                    alert('Enregistrement du client effectué !')
+                },
+                error: function () {
+                    alert('Enregistrement du client non effectué');
+                }
+            });
+            return false;
+        }
+
+    </script>
 </body>
 </html>
