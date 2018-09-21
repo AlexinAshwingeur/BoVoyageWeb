@@ -55,19 +55,18 @@
     <script>
         // fonction pour charger la liste des destinations utilisant le GET du controller Voyages
         function LoadVoyages() {
-            var divListeVoyages = $('#listeVoyages')
+            let divListeVoyages = $('#listeVoyages');
             setLoader(divListeVoyages);
             $.ajax({
                 url: '/api/Voyages',
                 success: function (voyages) {
-                    divListeVoyages.empty();
                     // Avec JQuery
                     var divListeVoyages = $('#listeVoyages');
                     divListeVoyages.empty();
                     for (var voyage of voyages) {
                         var divVoyage = $('<div class="Liste Voyage"></div>');
                         RemplirDivVoyage(divVoyage, voyage);
-                        divlisteVoyages.append(divVoyage);
+                        divListeVoyages.append(divVoyage);
                     }
                 }
             });
