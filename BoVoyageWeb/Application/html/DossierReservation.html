@@ -19,99 +19,35 @@
 
     <!--Navigation-->
 
-    <nav class="navbar navbar-light" style="background-color:#138496 ;">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="/"><i class="fas fa-check-double"></i> BoVoyage</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link " href="/Application/html/Voyages.html">Gestion Voyage <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link active" href="/application/html/Clients.html">Gestion Client</a>
+                <li class="nav-item">
+                    <a class="nav-link active " href="/application/html/Clients.html">Gestion Client</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!--Creer un dossier de reservation-->
-
-    <div class="container-fluid">
-        <h3>Nouvelle reservation</h3>
-
-        <form novalidate>
+    <div class="container">
+        <h1>
+            Gestion des Reservations
+        </h1>
 
 
-
-            <div class="form-group">
-                <label for="Client">Client*</label>
-                <select class="form-control" id="Client" required></select>
-            </div>
-
-           
-
-            <div class="form-group">
-                <label for="CarteBancaire">Carte bancaire*</label>
-                <input type="text" class="form-control" id="Carte bancaire" required />
-            </div>
-
-            <div class="form-group">
-                <label for="PrixParPersonne">Prix par personne</label>
-                <input type="text" class="form-control" id="PrixParPersonne">
-            </div>
-
-            <div class="form-group">
-                <label for="Voyage">Voyage*</label>
-                <select class="form-control" id="Voyage" required></select>
-
-            </div>
-
-            
-
-
-            <button class="btn btn-primary" onclick="return Enregistrer();">Enregistrer</button>
-
-        </form>
+        <div style="margin-bottom:25px;">
+            <a href="/Application/html/CreerReservation.html" class="btn btn-primary btn-sm">Cree un dossier de reservation</a>
+            <a href="/Application/html/reservation.html" class="btn btn-info btn-sm">Reservation en cours </a>
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="/Application/js/Javascript.js"></script>
-    <script>
-        function LoadVoyages() {
-            $.ajax({
-                url: '/api/Voyages',
-                success: function (voyages) {
-                    var select = $("#Voyages");
-                    select.empty();
-                    select.append($('<option></option>')); //élément vide
-                    for (voyage of voyages) {
-                        var option = $('<option></option>');
-                        option.val(voyage.Id);
-                        option.text(voyage.Nom);
-                        select.append(option);
-                    }
-                }
-            })
-        }
 
-        function LoadClients() {
-            $.ajax({
-                url: '/api/Clients',
-                success: function (client) {
-                    var select = $("#Clients");
-                    select.empty();
-                    select.append($('<option></option>')); //élément vide
-                    for (client of client) {
-                        var option = $('<option></option>');
-                        option.val(client.Id);
-                        option.text(client.Nom);
-                        select.append(option);
-                    }
-                }
-            })
-        }
-    </script>
+
+
 
 </body>
 </html>

@@ -6,9 +6,16 @@ body {
     margin-top: 25px;
 }
 
+
+
+
 .nav-bar {
     padding: 0 1rem;
    
+}
+.nav-item {
+
+    color:black;
 }
 
 .nav-item.active {

@@ -97,16 +97,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Application\css\style.css" />
-    <Content Include="Application\css\test.css" />
+    <Content Include="Application\css\home.css" />
     <Content Include="Application\html\AgencesVoyages.html" />
     <Content Include="Application\html\Clients.html" />
     <Content Include="Application\html\CreerClient.html" />
     <Content Include="Application\html\CreerDestination.html" />
+    <Content Include="Application\html\CreerReservation.html" />
     <Content Include="Application\html\CreerVoyage.html" />
     <Content Include="Application\html\Destinations.html" />
     <Content Include="Application\html\DossierReservation.html" />
     <Content Include="Application\html\ListeClients.html" />
-    <Content Include="Application\html\test.html" />
+    <Content Include="Application\html\Reservation.html" />
     <Content Include="Application\html\Voyages.html" />
     <Content Include="Application\js\JavaScript.js" />
     <Content Include="Global.asax" />
