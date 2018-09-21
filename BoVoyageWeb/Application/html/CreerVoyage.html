@@ -163,16 +163,16 @@
 
         function LoadDestinations() {
             $.ajax({
-                url: 'api/Destinations',
+                url: '/api/Destinations',
                 success: function (destinations) {
-                    let selectedDestination = $("#Destinations");
-                    select.empty();
-                    select.append($('<option></option>')); //élément vide
+                    let selectDestination = $("#Destination");
+                    selectDestination.empty();
+                    selectDestination.append($('<option></option>')); //élément vide
                     for (destination of destinations) {
                         var option = $('<option></option>');
                         option.val(destination.Id);
                         option.text(destination.Pays);
-                        selectedDestination.append(option);
+                        selectDestination.append(option);
                     }
                 }
             })
@@ -197,6 +197,7 @@
         $(document).ready(function () {
 
             LoadAgenceVoyages();
+            LoadDestinations();
             $('#DateAller').focus();
 
         //    //Vérification de la saisie DateAller supérieure à Date du jour
