@@ -61,7 +61,8 @@
 
             <div class="form-group">
                 <label for="Description">Description</label>
-                <textarea class="form-control" id="Description" rows="3"></textarea>
+                <textarea class="form-control" id="Description" rows="3" value="Maximum 250 caractères" onkeyup="javascript:MaxLengthTextarea(this, 250);">
+                </textarea>
             </div>
 
         </form>
@@ -121,7 +122,7 @@
         }
         $(document).ready(function () {
             LoadDestinations();
-            $('#Continent').focus(); 
+            $('#Continent').focus();
         });
     </script>
 </body>
