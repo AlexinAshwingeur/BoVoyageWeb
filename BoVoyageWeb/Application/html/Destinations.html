@@ -69,7 +69,7 @@
             });
         }
 
-        // fonction pour remplir la div Agence
+        // fonction pour remplir la div Destination
         function RemplirDivDestination(divDestination, destination) {
             divDestination.empty();
             divDestination.data('id', destination.id);
@@ -88,7 +88,7 @@
             });
             divDestination.append(buttonDelete);
 
-            ////Bouton modifier agence
+            ////Bouton modifier destination
             var buttonModify = $('<button id="ModifyButton" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></button>')
             buttonModify.on('click', function () {
                 Modifier($(this));
@@ -96,7 +96,7 @@
             divDestination.append(buttonModify);
         }
 
-        //Fonction pour modifier le nom d'une agence
+        //Fonction pour modifier une destination
         function Modifier(bouton) {
             var div = bouton.closest('.Destination');
             var span = div.find('span');
@@ -131,7 +131,7 @@
             });
         }
 
-        // fonction pour supprimer une agence
+        // fonction pour supprimer une destination
         function Supprimer(idDestination) {
             $.ajax({
                 type: 'DELETE',
@@ -145,7 +145,7 @@
             });
         }
 
-        //fonction pour ajouter une agence
+        //fonction pour ajouter une destination
         function Ajouter() {
             $.ajax({
                 type: 'POST',
@@ -160,7 +160,7 @@
             });
         }
 
-        //fonction pour annuler une modification sur agence
+        //fonction pour annuler une modification sur destination
         function AnnulerModification(divDestination) {
             let idDestination= divDestination.data('id');
             let continent = divDestination.data('continent'); //nom stocké plus haut
