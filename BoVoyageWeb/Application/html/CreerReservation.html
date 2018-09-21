@@ -53,8 +53,12 @@
             </div>
 
             <div class="form-group">
-                <label for="PrixParPersonne">Prix par personne</label>
-                <input type="text" class="form-control" id="PrixParPersonne">
+                <label for="PrixPersonne">Prix/personne TTC</label>
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> €</span>
+                    <input type="number" class="form-control" id="PrixPersonne" min="0" required />
+                    <div class="invalid-feedback">Champ requis</div>
+                </div>
             </div>
 
             <div class="form-group">
@@ -97,20 +101,23 @@
         function LoadClients() {
             $.ajax({
                 url: '/api/Clients',
-                success: function (client) {
+                success: function (clients) {
                     var select = $("#Client");
                     select.empty();
-                    select.append($('<option></option>')); //élément vide
-                    for (client of client) {
+                    select.append($('<option></option>')); // élément vide
+                    for (client of clients) {
                         var option = $('<option></option>');
-                        option.val(client.Id);
+                        option.val(client.id);
                         option.text(client.Nom);
                         select.append(option);
                     }
                 }
-            })
+            });
         }
 
+     
+        $(document).ready(LoadClients);
+        $(document).ready(LoadVoyages);
 
     </script>
 </body>
