@@ -29,7 +29,7 @@
     </nav>
     <div class="container">
         <h3>
-           Création d'un voyage
+            Création d'un voyage
         </h3>
         <form novalidate>
             <div class="form-group">
@@ -41,21 +41,28 @@
             <div class="form-group">
                 <label for="DateRetour">Date Retour</label>
                 <input type="date" class="form-control" id="DateRetour" required />
+                <div class="invalid-feedback">Champ requis</div>
             </div>
 
             <div class="form-group">
                 <label for="PlacesDispo">Places Disponibles</label>
-                <input type="number" class="form-control" id="PlacesDispo" />
+                <input type="number" class="form-control" id="PlacesDispo" min="0" required />
+                <div class="invalid-feedback">Champ requis</div>
             </div>
 
             <div class="form-group">
                 <label for="PrixPersonne">Prix/personne TTC</label>
-                <input type="number" class="form-control" id="PrixPersonne" />
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> €</span>
+                    <input type="number" class="form-control" id="PrixPersonne" min="0" required />
+                    <div class="invalid-feedback">Champ requis</div>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="AgenceVoyage">Agence de Voyage de rattachement</label>
-                <select class="form-control" id="AgenceVoyage"></select>
+                <select class="form-control" id="AgenceVoyage" required></select>
+                <div class="invalid-feedback">Champ requis</div>
                 <span>
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAgence" aria-expanded="false" aria-controls="collapseAgence">
                         +
@@ -71,18 +78,19 @@
 
             <div class="form-group">
                 <label for="Destination">Destination</label>
-                <select class="form-control" id="Destination"></select>
+                <select class="form-control" id="Destination" required></select>
+                <div class="invalid-feedback">Champ requis</div>
                 <!--<span>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDestination" aria-expanded="false" aria-controls="collapseDestination">
-                        +
-                    </button>
-                </span>
-                <div class="collapse" id="collapseDestination">
-                    <div class="card card-body">
-                        <input type="text" id="Destination" />
-                        <button id="SaveButton" class="btn btn-primary" onclick="AjouterDestination()">Ajouter</button>
-                    </div>
-                </div>-->
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDestination" aria-expanded="false" aria-controls="collapseDestination">
+            +
+        </button>
+    </span>
+    <div class="collapse" id="collapseDestination">
+        <div class="card card-body">
+            <input type="text" id="Destination" />
+            <button id="SaveButton" class="btn btn-primary" onclick="AjouterDestination()">Ajouter</button>
+        </div>
+    </div>-->
             </div>
 
             <button class="btn btn-primary" onclick="return Enregistrer();">Enregistrer</button>
@@ -112,7 +120,7 @@
             if (!Valider()) {
                 return false;
             }
-            
+
             let voyage = {
                 DateAller: $('#DateAller').val(),
                 DateRetour: $('#DateRetour').val(),
@@ -178,7 +186,7 @@
                 },
                 success: function () {
                     LoadAgenceVoyages()
-                    $('#Nom').val('');
+                    //$('#Nom').val('');
                     $('#collapseAgence').addClass('collapse');
                 }
             });
@@ -186,8 +194,8 @@
 
         $(document).ready(function () {
             LoadAgenceVoyages();
-            $('#Nom').focus();
-        }); 
+            $('#DateAller').focus();
+        });
     </script>-->
 
 </body>
