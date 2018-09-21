@@ -30,7 +30,7 @@
 
     <div class="container">
         <h3>
-           Création d'un voyage
+            Création d'un voyage
         </h3>
         <form novalidate>
             <div class="form-group">
@@ -42,21 +42,28 @@
             <div class="form-group">
                 <label for="DateRetour">Date Retour</label>
                 <input type="date" class="form-control" id="DateRetour" required />
+                <div class="invalid-feedback">Champ requis</div>
             </div>
 
             <div class="form-group">
                 <label for="PlacesDispo">Places Disponibles</label>
-                <input type="number" class="form-control" id="PlacesDispo" />
+                <input type="number" class="form-control" id="PlacesDispo" min="0" required />
+                <div class="invalid-feedback">Champ requis</div>
             </div>
 
             <div class="form-group">
                 <label for="PrixPersonne">Prix/personne TTC</label>
-                <input type="number" class="form-control" id="PrixPersonne" />
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> €</span>
+                    <input type="number" class="form-control" id="PrixPersonne" min="0" required />
+                    <div class="invalid-feedback">Champ requis</div>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="AgenceVoyage">Agence de Voyage de rattachement</label>
-                <select class="form-control" id="AgenceVoyage"></select>
+                <select class="form-control" id="AgenceVoyage" required></select>
+                <div class="invalid-feedback">Champ requis</div>
                 <span>
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAgence" aria-expanded="false" aria-controls="collapseAgence">
                         +
@@ -72,7 +79,8 @@
 
             <div class="form-group">
                 <label for="Destination">Destination</label>
-                <select class="form-control" id="Destination"></select>
+                <select class="form-control" id="Destination" required></select>
+                <div class="invalid-feedback">Champ requis</div>
                 <!--<span>
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDestination" aria-expanded="false" aria-controls="collapseDestination">
                         +
@@ -113,7 +121,7 @@
             if (!Valider()) {
                 return false;
             }
-            
+
             let voyage = {
                 DateAller: $('#DateAller').val(),
                 DateRetour: $('#DateRetour').val(),
@@ -179,16 +187,34 @@
                 },
                 success: function () {
                     LoadAgenceVoyages()
-                    $('#Nom').val('');
+                    //$('#Nom').val('');
                     $('#collapseAgence').addClass('collapse');
                 }
             });
         }
 
+
         $(document).ready(function () {
+
             LoadAgenceVoyages();
-            $('#Nom').focus();
-        }); 
+            $('#DateAller').focus();
+
+        //    //Vérification de la saisie DateAller supérieure à Date du jour
+        //    var dateNow = new Date();
+        //    let dateJour = new Date(dateNow.getFullYear(), dateNow.getMonth(), dateNow.getDate());
+        //    let dateSaisie = $('#DateAller').val();
+        //    $('#DateAller').keyup(function () {
+        //        if (dateSaisie < dateJour) { // si la date saisie est antérieure à la date du jour
+        //            alert('Veuillez saisir une date au-delà de ' + dateJour)
+        //        });
+        //}
+        //            else {
+        //        $('#DateRetour').focus;
+        //    });
+        //            }
+        //        });
+
+            });
     </script>-->
 
 </body>
